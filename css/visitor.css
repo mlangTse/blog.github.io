@@ -1,0 +1,43 @@
+.visitor-card{
+    border-radius: 16px;
+    padding: 14px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 12px 36px rgba(0,0,0,.08);
+    border: 1px solid rgba(0,0,0,.06);
+    backdrop-filter: blur(6px);
+  }
+  [data-theme="dark"] .visitor-card{
+    background: rgba(28,28,36,.86);
+    border-color: rgba(255,255,255,.06);
+  }
+  .visitor-card .vc-title{
+    font-weight: 700; margin-bottom: 8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .visitor-card .vc-body{ display:grid; gap:10px; }
+  .visitor-card .vc-row{ font-size:14px; display:flex; align-items:center; gap:6px; line-height:1.5; }
+  .visitor-card b{ font-weight:700; }
+  .visitor-card small{ opacity:.7; }
+  .visitor-card .vc-chip{
+    display:inline-block; padding:2px 8px; font-size:12px; border-radius:999px;
+    background:#eef2ff;
+  }
+  [data-theme="dark"] .visitor-card .vc-chip{ background: rgba(255,255,255,.08); }
+  .visitor-card .vc-panel{
+    border-radius:12px; padding:10px;
+    background: rgba(0,0,0,.03);
+    border:1px dashed rgba(0,0,0,.06);
+  }
+  [data-theme="dark"] .visitor-card .vc-panel{
+    background: rgba(255,255,255,.04);
+    border-color: rgba(255,255,255,.08);
+  }
+  .visitor-card .vc-actions{ display:flex; gap:8px; }
+  .visitor-card .vc-btn{
+    flex:1; text-align:center; padding:6px 10px; border-radius:10px; font-size:13px;
+    background:#f6f7fb; border:1px solid rgba(0,0,0,.06);
+  }
+  [data-theme="dark"] .visitor-card .vc-btn{
+    background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.08);
+  }
+  
