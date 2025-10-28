@@ -23,10 +23,6 @@ function kmDistance(lat1, lon1, lat2, lon2){
   const a=Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
   return 2*R*Math.asin(Math.sqrt(a));
 }
-function codeToWeatherText(code){
-  const m={0:'晴',1:'多云',2:'多云',3:'阴',45:'雾',48:'雾凇',51:'小雨',53:'中雨',55:'大雨',61:'小雨',63:'中雨',65:'大雨',71:'小雪',73:'中雪',75:'大雪',80:'阵雨',95:'雷阵雨'};
-  return m[code] || '未知';
-}
 
 function getCityName(city){
   if(!city) return '';
@@ -150,13 +146,6 @@ async function fetchGeo(){
     return { ip, city: city || '未知城市', region, country: country || '未知国家', org, lat, lon };
   }
 
-async function fetchWeather(lat, lon){
-  try{
-    const j = await timeout(fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`).then(r=>r.json()), REQ_TIMEOUT);
-    return { temp: typeof j?.current?.temperature_2m==='number' ? Math.round(j.current.temperature_2m) : null,
-             code: j?.current?.weather_code ?? null };
-  }catch(e){ return { temp:null, code:null }; }
-}
 
 (function init(){
   const root = document.getElementById('visitor-card');
@@ -169,11 +158,6 @@ async function fetchWeather(lat, lon){
     const ispTxt = geo.org || '';
     const distKm = kmDistance(geo.lat, geo.lon, BLOGGER_LAT, BLOGGER_LON);
     const distStr = (typeof distKm==='number') ? `${Math.round(distKm)}` : 'NaN';
-
-    let weather = {temp: null, code: null};
-    if(typeof geo.lat==='number' && typeof geo.lon==='number') weather = await fetchWeather(geo.lat, geo.lon);
-    const weatherText = codeToWeatherText(weather.code);
-    const tempText = (typeof weather.temp==='number') ? `${weather.temp}°C` : '未知°C';
 
     // 添加IP遮罩样式
     if(!document.getElementById('visitor-ip-mask-style')){
@@ -205,7 +189,7 @@ async function fetchWeather(lat, lon){
         <div class="vc-row" style="justify-content: center;">的朋友, 你好呀! </div>
         <div class="vc-row" style="justify-content: center;">你目前距博主约 <b>${distStr}</b> 公里！</div>
         <div class="vc-row" style="justify-content: center;">你的网络IP为: <span class="vc-ip-mask"><b>${geo.ip || '—'}</b></span></div>
-        <div class="vc-row" style="justify-content: center;">当前天气：<b>${weatherText}</b> <small>${tempText}</small></div>
+        
       </div>
 
     `;
