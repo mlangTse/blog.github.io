@@ -178,13 +178,12 @@ async function fetchGeo(){
     }
 
     // 如果城市和国家一样，只显示一个
-    const locationTxt = cityTxt === countryTxt ? `<b>${cityTxt}</b>` : `<b>${cityTxt}</b> · <small>${countryTxt}</small>`;
+    const locationTxt = cityTxt === countryTxt ? `<b>${countryTxt}</b>` //: `<b>${cityTxt}</b> · <small>${countryTxt}</small>`;
 
     body.innerHTML = `
-      <div class="vc-row"><span class="vc-chip">${greet()}，欢迎光临！</span></div>
 
       <div class="vc-panel" style="text-align: center;">
-        <div class="vc-row" style="justify-content: center;">来自</div>
+        <div class="vc-row" style="justify-content: center;">${greet()}，来自</div>
         <div class="vc-row" style="justify-content: center;">${locationTxt}</div>
         <div class="vc-row" style="justify-content: center;">的朋友, 你好呀! </div>
         <div class="vc-row" style="justify-content: center;">你目前距博主约 <b>${distStr}</b> 公里！</div>
@@ -194,6 +193,6 @@ async function fetchGeo(){
 
     `;
   })().catch(()=>{
-    body.innerHTML = `<div class="vc-row">🙈 获取信息失败，但欢迎常来坐坐～</div>`;
+    body.innerHTML = `<div class="vc-row">🙈 获取信息失败，但欢迎常来看看～</div>`;
   });
 })();
