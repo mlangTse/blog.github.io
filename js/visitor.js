@@ -178,7 +178,7 @@ async function fetchGeo(){
     }
 
     // 如果城市和国家一样，只显示一个
-    const locationTxt = cityTxt === countryTxt ? `<b>${countryTxt}</b>` //: `<b>${cityTxt}</b> · <small>${countryTxt}</small>`;
+    const locationTxt = cityTxt === <b>${countryTxt}</b> //? `<b>${countryTxt}</b>` : `<b>${cityTxt}</b> · <small>${countryTxt}</small>`;
 
     body.innerHTML = `
 
